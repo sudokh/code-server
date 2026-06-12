@@ -1,39 +1,16 @@
-version: "3"
 services:
-  mycent:
-    container_name: mycent-container
-    image: mycent-image
-    build:
-      context: .
-      dockerfile: Dockerfile
+  code-server:
+    container_name: code-server
+    build: .
+    restart: unless-stopped
     ports:
-      - 10022:22
+      # Caddy が同一ホストで動く場合は "127.0.0.1:8080:8080" に絞る（READMEを参照）
+      - "8080:8080"
+    environment:
+      - TZ=Asia/Tokyo
     volumes:
-      - type: volume
-        source: mycent-vol
-        target: /data
-        volume:
-          nocopy: true
-    tty: true
+      - ./data:/home/coder/project   # 作業ファイル（ホストから直接見える）
+      - code-server-home:/home/coder # 拡張機能・シェル設定・git認証情報の永続化
 
-    #networks:
-    #command:
-
-  volumes:
-    mycent-vol:
-      name: mycent-volume
-
-  networks:
-    frontend:
-      driver: bridge
-      ipam:
-        driver: default
-        config:
-          - subnet: 192.168.10.0/24
-
-    backend:
-      driver: bridge
-      ipam:
-        driver: default
-        config:
-          - subnet: 192.168.20.0/24
+volumes:
+  code-server-home:

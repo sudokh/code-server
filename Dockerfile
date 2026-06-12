@@ -1,20 +1,16 @@
-FROM centos:centos7
-RUN yum update -y && \
-    yum install -y epel-release && \
-    yum upgrade -y upgrade -y && \
-    yum install -y \
-    wget \
-    make \
+FROM codercom/code-server:latest
+
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
     zsh \
     tmux \
-    nvim \
-    openssh-server
+    neovim \
+    git \
+    curl \
+    make \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN sed -ri 's/^#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN echo 'root:password' | chpasswd
-RUN ssh-keygen -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key
-EXPOSE 22
+USER coder
 
-RUN touch ~/.vimrc && echo "set encoding=utf-8" > ~/.vimrc
-
-CMD ["/usr/sbin/sshd", "-D"]
+# LAN内利用のみのため認証なし（HTTPS終端は外部のCaddyが担う）
+ENTRYPOINT ["/usr/bin/entrypoint.sh", "--bind-addr", "0.0.0.0:8080", "--auth", "none", "/home/coder/project"]
