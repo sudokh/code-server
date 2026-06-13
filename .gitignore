@@ -1,2 +1,3 @@
-data/*
-!data/.gitkeep
+# make init が生成するホスト固有のもの（コミットしない）
+.env
+/ssh/

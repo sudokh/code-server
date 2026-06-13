@@ -1,0 +1,12 @@
+{
+  "terminal.integrated.defaultProfile.linux": "host",
+  "terminal.integrated.profiles.linux": {
+    "host": {
+      "path": "/usr/local/bin/ssh-host",
+      "icon": "remote-explorer"
+    },
+    "bash (container)": {
+      "path": "bash"
+    }
+  }
+}

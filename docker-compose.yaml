@@ -4,13 +4,25 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      # Caddy が同一ホストで動く場合は "127.0.0.1:8080:8080" に絞る（READMEを参照）
-      - "8080:8080"
+      # Caddy が同一ホストで動く場合は "127.0.0.1:${PORT}:8080" に絞る（READMEを参照）
+      - "${PORT:-8080}:8080"
     environment:
       - TZ=Asia/Tokyo
+      - HOST_USER=${HOST_USER}        # 統合ターミナルがSSHするホストユーザー
+    extra_hosts:
+      # Linux ホストで host.docker.internal を解決させる（ターミナルのSSH先）
+      - "host.docker.internal:host-gateway"
+    command:
+      - "--bind-addr"
+      - "0.0.0.0:8080"
+      - "--auth"
+      - "none"
+      - "--disable-telemetry"
+      - "${PROJECT_DIR}"              # 開くフォルダ。ホストと同一の絶対パス
     volumes:
-      - ./data:/home/coder/project   # 作業ファイル（ホストから直接見える）
-      - code-server-home:/home/coder # 拡張機能・シェル設定・git認証情報の永続化
+      - "${PROJECT_DIR}:${PROJECT_DIR}"                 # 作業ディレクトリをホストと同一パスでマウント
+      - "./ssh/id_ed25519:/home/coder/.ssh/id_host:ro"  # ホストSSH用の秘密鍵（make init が生成）
+      - "code-server-home:/home/coder"                  # 拡張機能・設定・git認証情報の永続化
 
 volumes:
   code-server-home:
