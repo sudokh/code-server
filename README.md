@@ -67,7 +67,7 @@ code.example.home {
 
 | 場所 | 実体 | 内容 |
 |---|---|---|
-| `${PROJECT_DIR}`（例: `/home/sudou/Project`） | ホストの同一パスをバインドマウント | 作業ファイル。ホスト・エディタ・ホストSSHターミナルすべてが同じパスで見る |
+| `${PROJECT_DIR}`（例: `/home/<user>/Project`） | ホストの同一パスをバインドマウント | 作業ファイル。ホスト・エディタ・ホストSSHターミナルすべてが同じパスで見る |
 | `/home/coder` | `code-server-home`（名前付きボリューム） | 拡張機能・設定・`.zshrc`・シェル履歴・`.gitconfig` など |
 | `/home/coder/.ssh/id_host` | `./ssh/id_ed25519`（read-only バインド） | ホストSSH用の秘密鍵（`make init` が生成） |
 
