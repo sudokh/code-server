@@ -1,3 +1,6 @@
 # make init が生成するホスト固有のもの（コミットしない）
 .env
 /ssh/
+
+# make inventory の一時作業ディレクトリ
+/.inventory.*/
