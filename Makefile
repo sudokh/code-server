@@ -34,5 +34,11 @@ ps: ## 稼働状況
 exec: ## コンテナ内の bash に入る（ホストではなくコンテナ側）
 	docker compose exec code-server bash
 
+inventory: ## volume から設定・ショートカット・スニペット・拡張一覧を棚卸し
+	@bash scripts/inventory.sh
+
+check-inventory: ## volume と Git 管理中の基準状態に差分がないか確認
+	@bash scripts/inventory.sh --check
+
 pull: ## code-server を最新イメージへ更新
 	docker compose build --pull && docker compose up -d
