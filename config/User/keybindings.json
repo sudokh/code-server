@@ -1,1 +1,243 @@
-[]
+[
+  // =========================================================
+  // 1. ファイル操作・検索
+  // =========================================================
+  {
+    "key": "cmd+k cmd+o",
+    "command": "workbench.action.files.openFolder"
+  },
+
+  // =========================================================
+  // 2. UI・パネル表示の切り替え（サイドバー・下部パネル）
+  // =========================================================
+  {
+    "key": "shift+cmd+b",
+    "command": "workbench.action.toggleActivityBarVisibility"
+  },
+  {
+    "key": "shift+cmd+g",
+    "command": "workbench.view.scm",
+    "when": "workbench.scm.active"
+  },
+  {
+    "key": "cmd+0",
+    "command": "workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+cmd+0",
+    "command": "workbench.action.toggleMaximizedAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+cmd+j",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "panelVisible"
+  },
+
+  // =========================================================
+  // 3. ビューサイズ調整・拡大縮小（Zoom & Resize）
+  // =========================================================
+  {
+    "key": "ctrl+cmd+left",
+    "command": "workbench.action.decreaseViewWidth"
+  },
+  {
+    "key": "ctrl+cmd+right",
+    "command": "workbench.action.increaseViewWidth"
+  },
+  {
+    "key": "shift+cmd+u",
+    "command": "workbench.action.zoomReset"
+  },
+
+  // =========================================================
+  // 4. エディタ・タブの操作とフォーカス
+  // =========================================================
+  {
+    "key": "shift+cmd+w",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "cmd+1",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "cmd+1",
+    "command": "workbench.action.terminal.focus",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextEditor",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousEditor",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextPanelView",
+    "when": "panelFocus"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousPanelView",
+    "when": "panelFocus"
+  },
+  {
+    "key": "cmd+-",
+    "command": "workbench.action.splitEditorOrthogonal"
+  },
+  {
+    "key": "cmd+h",
+    "command": "editor.action.showHover",
+    "when": "editorTextFocus"
+  },
+
+  // =========================================================
+  // 5. コードの折りたたみ（Folding）
+  // =========================================================
+  {
+    "key": "cmd+k [",
+    "command": "editor.fold",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "cmd+k ]",
+    "command": "editor.unfold",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "cmd+k cmd+[",
+    "command": "editor.foldRecursively",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "cmd+k cmd+]",
+    "command": "editor.unfoldRecursively",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "cmd+k shift+cmd+[",
+    "command": "editor.foldAll",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "cmd+k shift+cmd+]",
+    "command": "editor.unfoldAll",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+
+  // =========================================================
+  // 6. 既存コマンドの無効化（Conflict防止）
+  // =========================================================
+  // cmd+0 / cmd+1 関連
+  {
+    "key": "cmd+0",
+    "command": "-workbench.action.focusSideBar"
+  },
+  {
+    "key": "cmd+1",
+    "command": "-workbench.action.focusFirstEditorGroup"
+  },
+  // ctrl+tab 関連
+  {
+    "key": "ctrl+tab",
+    "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+  },
+  // shift+cmd+b / shift+cmd+g / shift+cmd+u 関連
+  {
+    "key": "shift+cmd+b",
+    "command": "-workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
+  },
+  {
+    "key": "shift+cmd+g",
+    "command": "-editor.action.previousMatchFindAction",
+    "when": "editorFocus"
+  },
+  {
+    "key": "shift+cmd+g",
+    "command": "-workbench.action.terminal.findPrevious"
+  },
+  {
+    "key": "shift+cmd+g",
+    "command": "-workbench.action.terminal.openDetectedLink",
+    "when": "accessibleViewIsShown && terminalHasBeenCreated && accessibleViewCurrentProviderId == 'terminal'"
+  },
+  {
+    "key": "shift+cmd+g",
+    "command": "-notebook.findPrevious.fromWidget",
+    "when": "findWidgetVisible && notebookEditorFocused"
+  },
+  {
+    "key": "shift+cmd+g",
+    "command": "-workbench.action.browser.findPrevious",
+    "when": "browserFindWidgetVisible && activeEditor == 'workbench.editor.browser'"
+  },
+  {
+    "key": "shift+cmd+u",
+    "command": "-workbench.action.output.toggleOutput",
+    "when": "workbench.panel.output.active"
+  },
+  // ctrl+cmd+方向キー 関連
+  {
+    "key": "ctrl+cmd+up",
+    "command": "-notebook.cell.focusInOutput"
+  },
+  {
+    "key": "ctrl+cmd+up",
+    "command": "-notebook.cell.focusOutOutput",
+    "when": "notebookEditorFocused && notebookOutputFocused"
+  },
+  {
+    "key": "ctrl+cmd+up",
+    "command": "-quickInput.previousSeparator"
+  },
+  {
+    "key": "ctrl+cmd+down",
+    "command": "-notebook.cell.focusInOutput"
+  },
+  {
+    "key": "ctrl+cmd+down",
+    "command": "-notebook.focusNextEditor"
+  },
+  {
+    "key": "ctrl+cmd+down",
+    "command": "-quickInput.nextSeparator"
+  },
+  {
+    "key": "ctrl+cmd+left",
+    "command": "-workbench.action.terminal.resizePaneLeft",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+cmd+left",
+    "command": "-workbench.action.moveEditorToPreviousGroup"
+  },
+  {
+    "key": "ctrl+cmd+right",
+    "command": "-workbench.action.terminal.resizePaneRight",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+cmd+right",
+    "command": "-workbench.action.moveEditorToNextGroup"
+  },
+  {
+    "key": "ctrl+cmd+right",
+    "command": "-quickInput.acceptInBackground",
+    "when": "cursorAtEndOfQuickInputBox && inQuickInput && quickInputType == 'quickPick' || inQuickInput && !inputFocus && quickInputType == 'quickPick'"
+  },
+  // その他
+  {
+    "key": "ctrl+v",
+    "command": "-editor.action.clipboardPasteAction"
+  },
+  {
+    "key": "cmd+k cmd+v",
+    "command": "markdown.showPreview"
+  }
+]
